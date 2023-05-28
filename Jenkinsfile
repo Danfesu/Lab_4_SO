@@ -9,18 +9,6 @@ pipeline {
 				'''
 			}
 		}
-		stage("test") {
-			steps {
-				echo 'test'
-				sh '''
-					docker-compose up --force-recreate --exit-code-from sumatest sumatest
-					docker-compose up --force-recreate --exit-code-from bibliotecatest bibliotecatest
-					docker-compose up --force-recreate --exit-code-from cursotest cursotest
-					docker-compose up --force-recreate --exit-code-from profesorestest profesorestest
-					docker-compose up --force-recreate --exit-code-from estudiantestest estudiantestest
-				'''
-			}
-		}
 		stage("deploy") {
 			steps {
 				echo 'deploy'

@@ -9,12 +9,12 @@ const expect = require('chai').expect;
 chai.use(chaiHttp);
 
 describe('Realizando test unitario', () => {
-	it('Deberia devolver 2', (done) => {
+	it('Deberia devolver 5', (done) => {
 		chai.request(API_URL)
             .get('/')
 			.end(function(err, res) {
 				console.log(res.body)
-                expect(res.body.estudiantes.length).to.equal(3); 
+                expect(res.body.estudiantes.length).to.equal(5); 
 				done();
 			});
 	});

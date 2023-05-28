@@ -22,6 +22,48 @@ services:
       dockerfile: Dockerfile.test
       context: ./microservicios/biblioteca
       
+  cursos:
+    container_name: cursos
+    build:
+      dockerfile: Dockerfile
+      context: ./microservicios/cursos
+    ports:
+      - '8092:8080'
+  
+  cursotest:
+    container_name: cursotest
+    build:
+      dockerfile: Dockerfile.test
+      context: ./microservicios/cursos
+
+  profesores:
+    container_name: profesores
+    build:
+      dockerfile: Dockerfile
+      context: ./microservicios/profesores
+    ports:
+      - '8093:8080'
+  
+  profesorestest:
+    container_name: profesorestest
+    build:
+      dockerfile: Dockerfile.test
+      context: ./microservicios/profesores
+
+  estudiantes:
+    container_name: estudiantes
+    build:
+      dockerfile: Dockerfile
+      context: ./microservicios/Estudiantes
+    ports:
+      - '8094:8080'
+  
+  estudiantestest:
+    container_name: estudiantestest
+    build:
+      dockerfile: Dockerfile.test
+      context: ./microservicios/Estudiantes
+      
   sumatest:
     container_name: sumatest
     build:

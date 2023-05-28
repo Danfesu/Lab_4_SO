@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
         }
         );
 });
+
 router.post('/crear', async(req, res)=> {
     const { nombre, edad, carrera,email,telefono } = req.body;
     const estudiante = { nombre, edad, carrera,email,telefono};

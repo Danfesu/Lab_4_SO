@@ -1,48 +1,37 @@
 const express = require('express');
-const mysql = require('mysql');
-const { promisify } = require('util');
+const path = require('path');
 
-const API_CONFIG_PUERTO = 0; 
+// Constantes
+const API_CONFIG_PUERTO = 8080;
 
-
+// Inicializaciones
 const app = express();
-const port = process.env.PORT || 0;
 
-const dbConfig = {
-  host: "db4free.net",
-  user: "luigicas",
-  password: "Hola1234",
-  database: "profesores"
-};
+// Configuraciones
+app.set('port', process.env.PORT || API_CONFIG_PUERTO);
 
-const pool = mysql.createPool(dbConfig);
-
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error('Error connecting to database:', err);
-  } else {
-    connection.release();
-    console.log('Database connected');
-  }
+// middlewares
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
 });
-
-pool.query = promisify(pool.query);
-
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-  try {
-    const profesores = await pool.query('SELECT * FROM Profesores');
-    res.json(profesores);
-  } catch (error) {
-    console.error('Error executing query:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+
+
+// Rutas
+app.use("",require("./route"));
+
+// Publico
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Iniciando servidor
+app.listen(app.get('port'), () => {
+    console.log(`Server running  in: http://localhost:${app.get('port')}`);
 });
 
-app.listen(port, () => {
-  console.log(`Microservicio running on port ${port}`);
-});
-
-module.exports = app;
-
+module.exports.API_CONFIG_PUERTO = API_CONFIG_PUERTO;

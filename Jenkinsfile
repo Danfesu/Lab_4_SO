@@ -27,7 +27,7 @@ pipeline {
 				sh '''
 					docker-compose up -d --force-recreate estudiantes
 					docker-compose up -d --force-recreate profesores
-					docker-compose up -d --force-recreate curso
+					docker-compose up -d --force-recreate cursos
 					docker-compose up -d --force-recreate biblioteca
 					docker-compose up -d --force-recreate suma
 					docker-compose up -d --force-recreate sitioweb

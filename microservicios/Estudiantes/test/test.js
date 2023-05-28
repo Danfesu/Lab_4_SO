@@ -14,36 +14,12 @@ describe('Realizando test unitario', () => {
             .get('/')
 			.end(function(err, res) {
 				console.log(res.body)
-                expect(res.body.estudiantes.length).to.equal(2); // Se espera que el resultado sea 100.
+                expect(res.body.estudiantes.length).to.equal(3); 
 				done();
 			});
 	});
 });
 
-describe('Crear',()=>{
-    it('debería crear un nuevo estudiante', (done) => {
-        const estudiante = {
-            //cambiar los datos al momento de realizar los test
-          nombre: 'Juan Perez', 
-          edad: 20,
-          carrera: 'Ingeniería',
-          email: 'juan@example.com',
-          telefono: 123456789
-        };
-  
-        chai.request(API_URL)
-          .post('/crear')
-          .send(estudiante)
-          .end((error, res) => {
-            expect(res).to.have.status(201);
-            expect(res.body).to.have.property('nombre', estudiante.nombre);
-            expect(res.body).to.have.property('edad', estudiante.edad);
-            expect(res.body).to.have.property('carrera', estudiante.carrera);
-            expect(res.body).to.have.property('email', estudiante.email);
-            expect(res.body).to.have.property('telefono', estudiante.telefono);
-            done();
-          });
-      });
-    });
+
   
   

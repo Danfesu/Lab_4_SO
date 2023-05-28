@@ -54,15 +54,15 @@ services:
     container_name: estudiantes
     build:
       dockerfile: Dockerfile
-      context: ./microservicios/estudiantes
+      context: ./microservicios/Estudiantes
     ports:
-      - '8093:8080'
+      - '8094:8080'
   
   estudiantestest:
     container_name: estudiantestest
     build:
       dockerfile: Dockerfile.test
-      context: ./microservicios/estudiantes
+      context: ./microservicios/Estudiantes
       
   sumatest:
     container_name: sumatest

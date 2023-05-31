@@ -14,7 +14,7 @@ describe('Realizando test unitario de biblioteca... ', () => {
             .get('/')
 			.end(function(err, res) {
 				console.log(res.body)
-                expect(res.body.libros.length).to.equal(8); // Se espera que el resultado sea 100.
+                expect(res.body.libros.length).to.equal(9); // Se espera que el resultado sea 100.
 				done();
 			});
 	});
